@@ -1,0 +1,151 @@
+---
+title: "R Series Session 7"
+subtitle: "Creating Awsome Web Slides" 
+author: "Dr. Kam Tin Seong<br/> Associate Professor of Information Systems"
+institute: "School of Computing and Information Systems"
+date: "`r Sys.Date()`"
+format: 
+  revealjs:
+    theme: beige
+    width: 1600
+    height: 900
+execute: 
+  eval: true
+  echo: true
+editor: visual
+---
+
+## Why you are here?
+
+Because you are:
+
+::: incremental
+-   tired of creating PowerPoint slides.
+
+-   interested to create awesome web slides using R.
+:::
+
+## Halo Plot
+
+```{r}
+#| echo: false
+pacman::p_load(tidyverse, knitr, DT)
+exam_data <- read_csv("data/Exam_data.csv")
+```
+
+```{r}
+#| echo: false
+#| fig-width: 4
+#| fig-height: 4
+ggplot(data = exam_data,
+       aes(x = ENGLISH)) +
+  geom_histogram(bins = 10,
+                 boundary = 100,
+                 color = "black",
+                 fill = "light blue") +
+  ggtitle("Distribution of English scores")
+
+```
+
+------------------------------------------------------------------------
+
+### Two Columns Slides
+
+:::::: columns
+:::: {.column width="50%"}
+I am the code chunk.
+
+::: {style="font-size: 1.2em"}
+```{r}
+#| eval: false
+pacman::p_load(tidyverse)
+exam_data <- read.csv("data/Exam_data.csv")
+
+ggplot(data = exam_data,
+       aes(x = MATHS)) +
+  geom_histogram(bins = 10,
+                 boundary = 100,
+                 color = "black",
+                 fill = "light blue") +
+  ggtitle("Distribution of Maths scores")
+
+```
+:::
+::::
+
+::: {.column width="50%"}
+I am the plot!
+
+```{r}
+#| echo: false
+#| fig-height: 8
+pacman::p_load(tidyverse)
+exam_data <- read.csv("data/Exam_data.csv")
+
+ggplot(data = exam_data,
+       aes(x = MATHS)) +
+  geom_histogram(bins = 10,
+                 boundary = 100,
+                 color = "black",
+                 fill = "light blue") +
+  ggtitle("Distribution of Maths scores")
+
+```
+:::
+::::::
+
+## Slide with Tabsets
+
+:::: panel-tabset
+## The code chunk
+
+::: {style="font-size: 1.2em"}
+```{r}
+#| eval: false
+pacman::p_load(tidyverse)
+exam_data <- read.csv("data/Exam_data.csv")
+
+ggplot(data = exam_data,
+       aes(x = MATHS)) +
+  geom_histogram(bins = 10,
+                 boundary = 100,
+                 color = "black",
+                 fill = "light blue") +
+  ggtitle("Distribution of Maths scores")
+
+```
+:::
+
+## The plot
+
+```{r}
+#| echo: false
+#| fig-height: 6
+pacman::p_load(tidyverse)
+exam_data <- read.csv("data/Exam_data.csv")
+
+ggplot(data = exam_data,
+       aes(x = MATHS)) +
+  geom_histogram(bins = 10,
+                 boundary = 100,
+                 color = "black",
+                 fill = "light blue") +
+  ggtitle("Distribution of Maths scores")
+
+```
+::::
+
+## How about displaying data table
+
+```{r}
+#| echo: false
+kable(head(exam_data, n=10))
+```
+
+## Interactive table
+
+```{r}
+#| echo: false
+datatable(exam_data, 
+          options = list(pageLength = 5, autoWidth = TRUE))
+```
